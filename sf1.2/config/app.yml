@@ -1,8 +1,10 @@
 all:
   sfAtosPaymentPlugin:
+    #currency_code: EUR # PAR defaut EUR coe de paiement par défaut si non surchargé dans le module
+    #merchant_country: fr # Par defaut fr sauf surcharge dans le code
+    #binpath: "" # Chemin d'accès aux binaires
     debug: yes
     no_rewrite_config: true #si la valeur est true alors les fichiers parcom et pathfile, ne seront pas réécrits obliger sinon erreur secu mais utilise pour configurer
-    binpath: ""
     pathfile_path: ""
     pathfile:
       d_logo: 

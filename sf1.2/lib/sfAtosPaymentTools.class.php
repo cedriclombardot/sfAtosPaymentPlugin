@@ -41,6 +41,19 @@ class sfAtosPaymentTools extends sfAtosPaymentBase{
 	}
 	
 	/**
+	 * Test si le code est une cles de  $_currency_code
+	 * 
+	 * @access public
+	 * @static 
+	 * @param integer Code de la monaie
+	 * 
+	 * @return boolean true si dans la liste
+	 */
+	public static function isValidCurrencyCode($code){
+		return (in_array($code,self::$_currencies));
+	}
+	
+	/**
 	 * Retourne le nom de la money en fonction du currency_code
 	 *
 	 * @access public
@@ -50,7 +63,7 @@ class sfAtosPaymentTools extends sfAtosPaymentBase{
 	 * @return string Nom de la monnaie
 	 */
 	public static function getCurrencyName($code){
-		if(in_array($code,self::$_currencies))
+		if(self::isValidCurrencyCode($code))
 			return array_search($code,self::$_currencies);
 		throw new Exception('Impossible de trouver le code >> '.$code.' << ');
 	}

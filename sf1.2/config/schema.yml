@@ -1,4 +1,5 @@
 propel:
+  _attributes: {   package: plugins.sfAtosPaymentPlugin.lib.model }
   sf_atos_cart:
     _attributes: { phpName: sfAtosCart }
     id: ~
@@ -49,7 +50,7 @@ propel:
     language: { type: varchar, size: 2, index: index }
     # Ce champ est utilisé pour les paiements par abonnement.
     # ATTENTION : les caractères suivants « | », « ; », « : » et « " » sont interdits  
-    customer_id:  { type: varchat, size: 19, index: index, required: true }
+    customer_id:  { type: varchar, size: 19, index: index, required: true }
     # Contient le numéro de commande associé à la transaction de paiement. 
     # ATTENTION : les caractères suivants « | », « ; », « : » et  « " » sont interdits 
     order_id: { type: varchar, size: 32, index: unique }

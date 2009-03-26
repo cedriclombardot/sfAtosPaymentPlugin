@@ -121,5 +121,85 @@ class sfAtosPayment extends sfAtosPaymentBase{
 	 /** Toute la requette chiffré */
 	 private $_data;  
 	 
+	 
+	 /**
+	  * Ouvre une transaction
+	  */
+	 public function __construct(){
+	 	$this->parseConfig();
+	 }
+	 
+	 private function parseConfig(){
+	 	$this->_currency_code=sfAtosPaymentTools::getCurrencyCode(sfAtosPaymentConfig::get('currency_code','EUR'));
+	 	$this->_merchant_country=sfAtosPaymentConfig::get('merchant_country','fr');
+	 	$this->_merchant_id=sfAtosPaymentConfig::get('merchant_id');
+	 }
+	 
+ 	/**
+	  * Execute la requette
+	  */
+	 public function doRequest(){
+	 	if(!$this->isValidAmount())
+	 		throw new Exception('Amount must be greater than 0');
+	 	
+	 	
+	 }
+	 
+	/**
+	 * Change le pays du commercant
+	 */
+	public function setMechantCountry($country){
+		if(!in_array($country,self::$_languages))
+			throw new Exception('Invalid country name '.$country);
+	 	$this->_merchant_country=$country;
+	 	return $this;
+	 }
+	 
+	 public function getMechantCountry(){
+	 	return $this->_merchant_country;
+	 }
+	 
+	 /**
+	  * Change la valeur du currency_code
+	  *
+	  * @param mixed soit le code soit le chiffre du code de currency 
+	  */
+	 public function setCurrencyCode($code='EUR'){
+	 	if(is_numeric($code)){
+	 		if(sfAtosPaymentTools::isValidCurrencyCode($code)){
+	 			$this->_currency_code=$code;
+	 			return $this;
+	 		}
+	 		return false;
+	 	}
+	 	$this->_currency_code=sfAtosPaymentTools::getCurrencyCode($code);
+	 	return $this;
+	 }
+	 
+	 public function getCurrencyCode(){
+	 	return $this->_currency_code;
+	 }
+	 
+	 /**
+	  *  Ecrit le montant en centimes
+	  */
+	 public function setAmount($amount){
+	 	if(!is_integer($amount))
+	 		throw new Exception('Amount must be an integer');
+	 	if($amount<=0)
+	 		throw new Exception('Amount must be greater than 0');
+	 	$this->_amount=$amount;
+	 	return $this;
+	 }
+	 
+	 public function getAmount(){
+	 	return $this->amount;
+	 }
+	 
+	 public function isValidAmount(){
+	 	return ($this->amount>0);
+	 }
+	 
+	
 }
 ?>
