@@ -1,0 +1,29 @@
+all:
+  sfAtosPaymentPlugin:
+    debug: yes
+    no_rewrite_config: true #si la valeur est true alors les fichiers parcom et pathfile, ne seront pas réécrits obliger sinon erreur secu mais utilise pour configurer
+    binpath: ""
+    pathfile_path: ""
+    pathfile:
+      d_logo: 
+      f_certificate: "" #%sf_plugins_dir%/sfAtosPaymentPlugin/lib/atos/
+      f_param: ""
+      f_default: ""
+    parcom:
+      bgcolor: FFFFFF # couleur du fond d'ecran (blanc)
+      block_align: center # Mode d'affichage des blocs de paiment
+      block_order:  1,2,3,4,5,6,7,8 # Ordre d'affichage des blocs de paiement
+      condition: SSL # Mode de securite 
+      currency: 978 # Code devise  ( 978=EURO )
+      header_flag: yes # flag d'edition des libelles des blocs de paiement
+      language: fr # Code langage de l'acheteur (fr=francais)
+      logo: cyber.gif # Logo Cyberplus paiement
+      logo2: bp.gif # Logo Banque Populaire
+      merchant_country: fr # Code pays du commercant
+      merchant_language: fr # Code langage du commercant
+      payment_means: CB,2,VISA,2,MASTERCARD,2 # Liste des moyens de paiement acceptes
+      target: _parent # Passage en une seule frame securisee au moment du paiement
+      textcolor:  000000 # Couleur du text (noir)
+    merchant_id: "" #mettre des quotes
+    cancel_url: "" #Url pour les annulations
+    confirmation_url: "" #Url pour les confirmations
