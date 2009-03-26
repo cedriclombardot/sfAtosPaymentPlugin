@@ -1,0 +1,35 @@
+propel:
+  sf_atos_cart:
+    _attributes: { phpName: sfAtosCart }
+    id: ~
+    id_customer: { type: integer, required: ture, index: index }
+    amount: { type: integer, required: true, index: index } # Prix en centimes
+    code: { type: integer, size: 200, index: index }
+    error: { type: integer, size: 2, index: index }
+    merchant_id:  { type: integer, size: 20, index: index, required: true }
+    transaction_id: { type: integer, size: 6, index: unique, required: true }
+    payment_means: { type: varchar, size: 128, index: index }
+    transmission_date: { type: date, index: index, required: true }
+    payment_time: { type: timestamp, index: index } # fusion de payment_time et payment_date
+    response_code: { type: integer, size: 2, index: index }
+    payment_certificate: { type: integer, size: 12 }
+    authorisation_id: { type: integer, size: 6, index: unique }
+    currency_code:  { type: integer, size: 3, index: index }
+    card_number:  { type: integer, size: 7 }
+    cvv_flag: { type: integer, size: 1, index: index }
+    cvv_response_code: { type: integer, size: 2, index: index }
+    bank_response_code: { type: integer, size: 2, index: index }
+    complementary_code:  { type: integer, size: 2, index: index }
+    complementary_info: { type: longvarchar }
+    return_context: { type: varchar, size: 255 }
+    caddie: { type: longvarchar }
+    recipient_complement: { type: longvarchar }
+    merchant_language: { type: varchar, size: 2, index: index }
+    language: { type: varchar, size: 2, index: index }
+    customer_id:  { type: integer, size: 19, index: index, required: true }
+    order_id: { type: varchar, size: 32, index: unique }
+    customer_email:  { type: varchar, size: 128, index: index }
+    customer_ip_address:  { type: varchar, size: 19, index: index }
+    capture_day: { type: integer, size: 2, index: index }
+    capture_mode: { type: varchar, size: 20, index: index }
+    data: { type: blob }
