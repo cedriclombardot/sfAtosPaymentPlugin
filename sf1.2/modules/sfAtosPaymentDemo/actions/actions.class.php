@@ -19,5 +19,17 @@ class sfAtosPaymentDemoActions extends sfActions {
 		$payment_transaction->setCustomerId(uniqid());
 		$payment_transaction->doRequest();
 	}
+	
+	public function executeConfirm(sfWebRequest $request){
+		$payment_transaction=new sfAtosPayment();
+		$this->sf_atos_cart=sfAtosCartPeer::retrieveByBankResponse($payment_transaction->getResponse());
+		if(!sfAtosPaymentTools::isValidBankResponseCode($this->sf_atos_cart->getBankResponseCode()))
+			return sfView::ERROR;
+		return sfView::SUCCESS;
+	}
+	
+	public function executeCancel(sfWebRequest $request){
+		
+	}
 }
 ?>

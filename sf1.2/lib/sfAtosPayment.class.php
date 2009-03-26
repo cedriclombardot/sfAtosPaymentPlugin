@@ -79,52 +79,6 @@ class sfAtosPayment extends sfAtosPaymentBase{
 	 /** Mode de paiment différé */
 	 private $_capture_mode;
 	 
-	  /**
- 	  * Variables liés à l'étape 2 - Réponse
- 	  */
-	 
-	 /** Numéro de la transaction */
-	 private $_transaction_id;
-	
-	 /** Moyen de paiement */
-	 private $_payment_means;
-	 
-	 /** Date de la transmission */
-	 private $_transmission_date;
-	 
-	 /** Heure de paiement */
-	 private $_payment_time;
-	 
-	 /** Date de paiement */
-	 private $_payment_date;
-	 
-	
-	 /** Certificat de paiement */
-	 private $_payment_certificate;
-	 
-	 /** Numéro de l'autorisation */
-	 private $_authorisation_id;
-	 
-	 /** Numéro de la CB partiel */
-	 private $_card_number;
-	 
-	 /** Retour du CVV flag à annalyser avec self::$_cvv_flag_code */
-	 private $_cvv_flag;
-	 
-	 /** Retour de la validation du CVV flag */
-	 private $_cvv_response_code;
-	 
-	 
-	 /** Code complémentaire */
-	 private $_complementary_code;
-	 
-	 /** Information complémentaires */
-	 private $_complementary_info;
-	 
-	 /** Toute la requette chiffré */
-	 private $_data;  
-	 
-	 
 	 /**
 	  * Ouvre une transaction
 	  */
@@ -240,6 +194,89 @@ class sfAtosPayment extends sfAtosPaymentBase{
 	}
 	
 	
+	/**
+	 * Execute La réponse automatique
+	 */
+	 public function doResponse(){
+		 $this->saveResponse($this->getResponse());
+	 }
+	 
+	 public function getResponse(){
+	 	$result=exec($this->_bin_path.DIRECTORY_SEPARATOR.$this->_response_bin_name.' '.$this->buildResponseRequest());
+	 	$tableau = explode ("!", $result);
+	 	if ($tableau[1] == '' && $tableau[2] == '') 
+		 	throw new Exception('Impossible de trouver l\'executable: ' . $this->_bin_path.DIRECTORY_SEPARATOR.$this->_request_bin_name);
+	    elseif ($tableau[1] != 0) 
+		 	throw new Exception('Erreur API '. $tableau[1]);
+		 
+		return $tableau;
+	
+	 }
+	 
+	 private function saveResponse($tableau){
+	 	$sf_atos_cart=new sfAtosCart();
+	 	
+	 	//Le commercant
+	 	$sf_atos_cart->setMerchantId($tableau[3]);
+	 	$sf_atos_cart->setMerchantCountry($tableau[4]);
+	 	$sf_atos_cart->setMerchantLanguage($tableau[24]);
+	 	
+	 	//Achat
+	 	$sf_atos_cart->setAmount($tableau[5]);
+	 	$sf_atos_cart->setOrderId($tableau[27]);
+	 	$sf_atos_cart->setCurrencyCode($tableau[14]);
+	 	$sf_atos_cart->setCaddie($tableau[22]);
+	 	$sf_atos_cart->setReturnContext($tableau[21]);
+	 	
+	 	//Transaction
+	 	$sf_atos_cart->setTransactionId($tableau[6]);
+		$sf_atos_cart->setTransmissionDate($tableau[8]);
+		
+		$payement_timestamp=mktime(substr($this->payment_time,0,2),substr($this->payment_time,2,2),
+		substr($this->payment_time,4,2),substr($this->payment_date,4,2),substr($this->payment_date,6,2),
+		substr($this->payment_date,0,4));
+		$sf_atos_cart->setPaymentTime($payement_timestamp);
+
+		$sf_atos_cart->setResponseCode($tableau[11]);
+		$sf_atos_cart->setPaymentCertificate($tableau[12]);
+		$sf_atos_cart->setAuthorisationId($tableau[13]);
+		
+		//La carte
+		$sf_atos_cart->setPaymentMeans($tableau[7]);
+		$sf_atos_cart->setCardNumber($tableau[15]);
+		$sf_atos_cart->setCvvFlag($tableau[16]);
+		$sf_atos_cart->setCvvResponseCode($tableau[17]);
+		
+		//Paiement différé
+		$sf_atos_cart->setCaptureDay($tableau[30]);
+		$sf_atos_cart->setCaptureMode($tableau[31]);
+		
+		//Réponse de la banque
+		$sf_atos_cart->setBankResponseCode($tableau[18]);
+		$sf_atos_cart->setComplementaryCode($tableau[19]);
+		$sf_atos_cart->setComplementaryInfo($tableau[20]);
+		
+		
+		//Flag en haut du ticket non sauvegardé receipt_complement     = $tableau[23];
+		
+		//Le client
+		$sf_atos_cart->setLanguage($tableau[25]);
+		$sf_atos_cart->setCustomerId($tableau[26]);
+		$sf_atos_cart->setCustomerEmail($tableau[28]);
+		$sf_atos_cart->setCustomerIpAddress($tableau[29]);
+		
+		//La reponse
+		$sf_atos_cart->setData($tableau[32]);
+		
+		//Save
+		$sf_atos_cart->save();
+		
+	 }
+	 private function buildResponseRequest(){
+	 	$parm =" pathfile=".$this->_pathfile;
+	 	$parm .=" message=".$this->getRequest()->getParameter('DATA');
+	 	return $parm;
+	 }
 	/**
 	 * Change la valeur de _automatic_return
 	 * 

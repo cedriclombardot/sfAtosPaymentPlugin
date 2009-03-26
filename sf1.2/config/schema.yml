@@ -9,6 +9,8 @@ propel:
     merchant_id:  { type: integer, size: 15, index: index, required: true }
     # Langue du commercant
     merchant_language: { type: varchar, size: 2, index: index }
+    # Pays du commercant
+    merchant_country: { type: varchar, size: 2, index: index }
     # Contient l’identifiant de la transaction de paiement. 
     transaction_id: { type: integer, size: 6, index: unique, required: true }
     # Contient le moyen de paiement choisi par l’internaute pour la transaction
