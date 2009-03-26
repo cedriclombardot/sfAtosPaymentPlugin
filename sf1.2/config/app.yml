@@ -2,10 +2,13 @@ all:
   sfAtosPaymentPlugin:
     #currency_code: EUR # PAR defaut EUR coe de paiement par défaut si non surchargé dans le module
     #merchant_country: fr # Par defaut fr sauf surcharge dans le code
-    #binpath: "" # Chemin d'accès aux binaires
+    binpath: "D:/Documents/sf2/plugins/sfAtosPaymentPlugin/cgi-bin" # Chemin d'accès aux binaires
+    merchant_id: "049981472100019" #mettre des quotes pour le 0
+    #pathfile_path: "" # Chemin du pathfile
+   
     debug: yes
     no_rewrite_config: true #si la valeur est true alors les fichiers parcom et pathfile, ne seront pas réécrits obliger sinon erreur secu mais utilise pour configurer
-    pathfile_path: ""
+    
     pathfile:
       d_logo: 
       f_certificate: "" #%sf_plugins_dir%/sfAtosPaymentPlugin/lib/atos/
@@ -26,6 +29,5 @@ all:
       payment_means: CB,2,VISA,2,MASTERCARD,2 # Liste des moyens de paiement acceptes
       target: _parent # Passage en une seule frame securisee au moment du paiement
       textcolor:  000000 # Couleur du text (noir)
-    merchant_id: "" #mettre des quotes
     cancel_url: "" #Url pour les annulations
     confirmation_url: "" #Url pour les confirmations

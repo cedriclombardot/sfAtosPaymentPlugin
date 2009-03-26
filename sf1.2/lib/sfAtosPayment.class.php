@@ -30,14 +30,9 @@ class sfAtosPayment extends sfAtosPaymentBase{
      /** Code de la monnai */
 	 private $_currency_code;
 	 
-	 /** Chemin des executables */
+	 /** Chemin de pathfile */
 	 private $_pathfile;
 	 
-	 /** Binaire pour la requette */
-	 private $_request_cmd;
-	 
-	 /** Binaire pour la réponse */
-	 private $_response_cmd;
 	 
 	 /** Numéro de la commande */
 	 private $_order_id;
@@ -61,9 +56,7 @@ class sfAtosPayment extends sfAtosPaymentBase{
 	 /** Date de paiement */
 	 private $_payment_date;
 	 
-	 /** Code de réponse retourné par la bank */
-	 private $_response_code;
-	 
+	
 	 /** Certificat de paiement */
 	 private $_payment_certificate;
 	 
@@ -79,8 +72,6 @@ class sfAtosPayment extends sfAtosPaymentBase{
 	 /** Retour de la validation du CVV flag */
 	 private $_cvv_response_code;
 	 
-	 /** Retour de la réponse $_bank_response_code */
-	 private $_bank_response_code;
 	 
 	 /** Code complémentaire */
 	 private $_complementary_code;
@@ -133,18 +124,45 @@ class sfAtosPayment extends sfAtosPaymentBase{
 	 	$this->_currency_code=sfAtosPaymentTools::getCurrencyCode(sfAtosPaymentConfig::get('currency_code','EUR'));
 	 	$this->_merchant_country=sfAtosPaymentConfig::get('merchant_country','fr');
 	 	$this->_merchant_id=sfAtosPaymentConfig::get('merchant_id');
+	 	$this->_bin_path=sfAtosPaymentConfig::get('binpath');
+	 	$this->_request_bin_name=sfAtosPaymentConfig::get('bin_request','request');
+	 	$this->_response_bin_name=sfAtosPaymentConfig::get('bin_response','response');
+	 	
+	 	
+	 	if(!file_exists($this->_bin_path.DIRECTORY_SEPARATOR.$this->_request_bin_name)){
+	 		$finder=sfFinder::type('file')->name($this->_request_bin_name)->in(sfAtosPaymentConfig::get('binpath',sfConfig::get('sf_root_dir')));
+	 		if(sizeof($finder)>0){
+	 			$finder=$finder[0];
+	 			$this->_bin_path=dirname($finder);
+	 		}else{
+	 			throw new Exception('Bin Path invalide '.$this->_bin_path);
+	 		}
+	 	}
 	 }
 	 
  	/**
 	  * Execute la requette
 	  */
 	 public function doRequest(){
-	 	if(!$this->isValidAmount())
-	 		throw new Exception('Amount must be greater than 0');
-	 	
+	 	if(!sfAtosPaymentTools::isValidAmount($this->getAmount()))
+	 		throw new Exception('Amount must be an integer greater than 0');
+	 	if(!sfAtosPaymentTools::isValidMerchantId($this->getMechantId()))
+	 		throw new Exception('Invalid merchant_id');
 	 	
 	 }
-	 
+	
+	/**
+	 * Change l'id du commercant
+	 */
+	public function setMechantId($merchant_id){
+		if(!sfAtosPaymentTools::isValidMerchantId($merchant_id))
+			throw new Exception('Invalid merchant_id '.$merchant_id);
+	 	$this->_merchant_id=$merchant_id;
+	 	return $this;
+	 }
+	 public function getMechantId(){
+	 	return $this->_merchant_id;
+	 }
 	/**
 	 * Change le pays du commercant
 	 */
@@ -184,21 +202,18 @@ class sfAtosPayment extends sfAtosPaymentBase{
 	  *  Ecrit le montant en centimes
 	  */
 	 public function setAmount($amount){
-	 	if(!is_integer($amount))
-	 		throw new Exception('Amount must be an integer');
-	 	if($amount<=0)
-	 		throw new Exception('Amount must be greater than 0');
+	 	if(!sfAtosPaymentTools::isValidAmount($amount))
+	 		throw new Exception('Amount must be an integer greater than 0');
 	 	$this->_amount=$amount;
 	 	return $this;
 	 }
 	 
 	 public function getAmount(){
-	 	return $this->amount;
+	 	return $this->_amount;
 	 }
 	 
-	 public function isValidAmount(){
-	 	return ($this->amount>0);
-	 }
+	 
+	 
 	 
 	
 }

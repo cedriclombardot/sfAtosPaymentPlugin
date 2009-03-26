@@ -24,7 +24,7 @@ class sfAtosPaymentConfig{
 	 * @return mixed valeur de app.yml
 	 */
 	public static function get($var, $default=null){
-		return sfConfig::get('app_sfAtosPaymentPlugin_'.$var,$dafault);
+		return sfConfig::get('app_sfAtosPaymentPlugin_'.$var,$default);
 	}
 	
 	

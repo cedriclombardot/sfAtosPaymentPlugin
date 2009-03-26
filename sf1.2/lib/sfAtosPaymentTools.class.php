@@ -35,7 +35,7 @@ class sfAtosPaymentTools extends sfAtosPaymentBase{
 	 * @return integer Code de la monnaie
 	 */
 	public static function getCurrencyCode($name='EUR'){
-		if(array_key_exists($name,self::$_currencies))
+		if(array_key_exists($name,sfAtosPaymentBase::$_currencies))
 			return self::$_currencies[$name];
 		throw new Exception('Impossible de trouver la monnaie >> '.$name.' << ');
 	}
@@ -50,7 +50,7 @@ class sfAtosPaymentTools extends sfAtosPaymentBase{
 	 * @return boolean true si dans la liste
 	 */
 	public static function isValidCurrencyCode($code){
-		return (in_array($code,self::$_currencies));
+		return (in_array($code,sfAtosPaymentBase::$_currencies));
 	}
 	
 	/**
@@ -64,7 +64,7 @@ class sfAtosPaymentTools extends sfAtosPaymentBase{
 	 */
 	public static function getCurrencyName($code){
 		if(self::isValidCurrencyCode($code))
-			return array_search($code,self::$_currencies);
+			return array_search($code,sfAtosPaymentBase::$_currencies);
 		throw new Exception('Impossible de trouver le code >> '.$code.' << ');
 	}
 	
@@ -79,7 +79,7 @@ class sfAtosPaymentTools extends sfAtosPaymentBase{
 	 */
 	public static function getCvvFlagCodeName($code){
 		if(in_array($code,self::$_cvv_flag_code))
-			return self::__(array_search($code,self::$_cvv_flag_code));
+			return self::__(array_search($code,sfAtosPaymentBase::$_cvv_flag_code));
 		throw new Exception('Impossible de trouver le code >> '.$code.' << ');
 	}
 	
@@ -95,7 +95,7 @@ class sfAtosPaymentTools extends sfAtosPaymentBase{
 	 */
 	public static function getCvvVerificationCodeName($code){
 		if(in_array($code,self::$_cvv_verification_code))
-			return self::__(array_search($code,self::$_cvv_verification_code));
+			return self::__(array_search($code,sfAtosPaymentBase::$_cvv_verification_code));
 		throw new Exception('Impossible de trouver le code >> '.$code.' << ');
 	}
 	
@@ -110,7 +110,7 @@ class sfAtosPaymentTools extends sfAtosPaymentBase{
 	 */
 	public static function getResponseCodeName($code){
 		if(in_array($code,self::$_response_code))
-			return self::__(array_search($code,self::$_response_code));
+			return self::__(array_search($code,sfAtosPaymentBase::$_response_code));
 		throw new Exception('Impossible de trouver le code >> '.$code.' << ');
 	}
 	
@@ -125,7 +125,7 @@ class sfAtosPaymentTools extends sfAtosPaymentBase{
 	 */
 	public static function getBankResponseCodeName($code){
 		if(in_array($code,self::$_bank_response_code))
-			return self::__(array_search($code,self::$_bank_response_code));
+			return self::__(array_search($code,sfAtosPaymentBase::$_bank_response_code));
 		throw new Exception('Impossible de trouver le code >> '.$code.' << ');
 	}
 	
@@ -155,6 +155,26 @@ class sfAtosPaymentTools extends sfAtosPaymentBase{
 		if(sfConfig::get('sf_i18n'))
 			return sfContext::getI18N()->__($t,$args,$catalogue);
 		return $t;
+	}
+	
+	/**
+	 * Test si le merchant_id est valide
+	 * 
+	 * @param string %Merchant id
+	 * @return boolean true si bon
+	 */
+	public static function isValidMerchantId($merchant_id){
+		return ((strlen($merchant_id)<=15)&&(ereg('^([0-9]+)$',$merchant_id)));
+	}
+	
+	/**
+	 * Test si le montant est valide
+	 * 
+	 * @param mixed $amount montant
+	 * @return boolean true si vrai
+	 */
+	public static function isValidAmount($amount){
+	 	return (($amount>0)&&(is_numeric($amount)));
 	}
 }
 ?>

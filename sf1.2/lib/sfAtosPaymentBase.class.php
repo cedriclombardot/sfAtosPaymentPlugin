@@ -16,10 +16,10 @@
 abstract class sfAtosPaymentBase{
 	
 	/** @staticvar Liste les langues utilisables par le modules ATOS */
-	private static $_languages = array('fr', 'be', 'de', 'it', 'es', 'en');
+	public static $_languages = array('fr', 'be', 'de', 'it', 'es', 'en');
 	
 	/** @staticvar Liste les monnaies afin de rendre plus lisible la config */
-	private static $_currencies = array(
+	public static $_currencies = array(
 	    'EUR' => 978,
  	    'USD' => 840,
  	    'CHF' => 756,
@@ -44,7 +44,7 @@ abstract class sfAtosPaymentBase{
  	  );
  	
  	  /** @staticvar Liste des retours sur les CVV flag (chiffres derrières la carte */
- 	private static $_cvv_flag_code = array(
+ 	public static $_cvv_flag_code = array(
  	    '0' => 'Le numéro de contrôle n’est pas remonté par le commerçant',
  	    '1' => 'Le numéro de contrôle est présent',
  	    '2' => 'Le numéro de contrôle est présent sur la carte du porteur mais illisible 
@@ -55,7 +55,7 @@ abstract class sfAtosPaymentBase{
  	  
  	
  	/** @staticvar Code de retour de verification du CVV flag */ 
- 	private static $_cvv_verification_code = array(
+ 	public static $_cvv_verification_code = array(
  	    '4E' => 'Numéro de contrôle incorrect',
  	    '4D' => 'Numéro de contrôle correct',
  	    '50' => 'Numéro de contrôle non traité',
@@ -65,7 +65,7 @@ abstract class sfAtosPaymentBase{
     );
     
     /**  @staticvar code de réponse */
-    private static $_response_code = array(
+    public static $_response_code = array(
  	    '00' => 'Transaction approuvée ou traitée avec succès',
  	    '02' => 'Contacter l’émetteur de carte',
  	    '03' => 'Accepteur invalide',
@@ -102,7 +102,7 @@ abstract class sfAtosPaymentBase{
  	  );
  	  
  	  /**  @staticvar code de reponse de SPIS */
- 	  private static $_bank_response_code = array(
+ 	  public static $_bank_response_code = array(
  	   '00' =>    'Autorisation acceptée',
  	   '02' =>    'Demande d’autorisation par téléphone à la banque à cause d’un dépassement de plafond d’autorisation sur la carte (cf. annexe I)',
 	   '03' =>    'Champ merchant_id invalide, vérifier la valeur renseignée dans la requête<br />Contrat de vente à distance inexistant, contacter votre banque.',
