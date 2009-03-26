@@ -176,5 +176,12 @@ class sfAtosPaymentTools extends sfAtosPaymentBase{
 	public static function isValidAmount($amount){
 	 	return (($amount>0)&&(is_numeric($amount)));
 	}
+	
+	/**
+	 * Génère un order_id
+	 */
+	public static function generateOrderId(){
+		return uniqid(rand(), true);
+	}
 }
 ?>

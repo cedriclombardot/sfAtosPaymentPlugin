@@ -10,6 +10,7 @@ all:
     #f_certificate: "" #par defaut le meme dossier que pathfile /certif
     #f_param: "" #par defaut le meme dossier que pathfile /parcom
     f_default_name: "parmcom.cyberplus" # dans le dossier de parcom
-    
-    cancel_url: "" #Url pour les annulations
-    confirmation_url: "" #Url pour les confirmations
+    #merchant_language: "fr" # Langue du commercant
+    #cancel_url: "" #Url pour les annulations par defaut @homepage
+    #confirmation_url: "" #Url pour les confirmations @homepage
+    #autoresponse_url: "sfAtosPayment/response" #URL par defaut sfAtosPayment/response Attention a modifier avec précautions

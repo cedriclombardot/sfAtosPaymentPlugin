@@ -16,6 +16,7 @@ class sfAtosPaymentDemoActions extends sfActions {
 	public function executeIndex(sfWebRequest $request){
 		$payment_transaction=new sfAtosPayment();
 		$payment_transaction->setAmount(100);
+		$payment_transaction->setCustomerId(uniqid());
 		$payment_transaction->doRequest();
 	}
 }

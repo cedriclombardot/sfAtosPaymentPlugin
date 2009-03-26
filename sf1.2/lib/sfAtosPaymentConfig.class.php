@@ -28,6 +28,23 @@ class sfAtosPaymentConfig{
 	}
 	
 	
+	/**
+	 * Retrouve la variable dans sfConfig
+	 * 
+	 * @access public
+	 * @static 
+	 * @param string $var nom de la variable
+	 * @param mixed $default Valeur si null
+	 * 
+	 * @return array valeur de app_sfAtosPaymentPlugin
+	 */
+	public static function getAll(){
+		return sfConfig::get('app_sfAtosPaymentPlugin');
+	}
+	
+	
+	
+	
 }
 
 ?>
