@@ -11,20 +11,5 @@ all:
     #f_param: "" #par defaut le meme dossier que pathfile /parcom
     f_default_name: "parmcom.cyberplus" # dans le dossier de parcom
     
-    parcom:
-      bgcolor: FFFFFF # couleur du fond d'ecran (blanc)
-      block_align: center # Mode d'affichage des blocs de paiment
-      block_order:  1,2,3,4,5,6,7,8 # Ordre d'affichage des blocs de paiement
-      condition: SSL # Mode de securite 
-      currency: 978 # Code devise  ( 978=EURO )
-      header_flag: yes # flag d'edition des libelles des blocs de paiement
-      language: fr # Code langage de l'acheteur (fr=francais)
-      logo: cyber.gif # Logo Cyberplus paiement
-      logo2: bp.gif # Logo Banque Populaire
-      merchant_country: fr # Code pays du commercant
-      merchant_language: fr # Code langage du commercant
-      payment_means: CB,2,VISA,2,MASTERCARD,2 # Liste des moyens de paiement acceptes
-      target: _parent # Passage en une seule frame securisee au moment du paiement
-      textcolor:  000000 # Couleur du text (noir)
     cancel_url: "" #Url pour les annulations
     confirmation_url: "" #Url pour les confirmations
