@@ -31,7 +31,7 @@ class sfAtosPaymentDemoActions extends sfActions {
 	public function executeCancel(sfWebRequest $request){
 		$payment_transaction=new sfAtosPayment();
 		$this->sf_atos_cart=sfAtosCartPeer::retrieveByBankResponse($payment_transaction->getResponse());
-		if(sfAtosPaymentTools::isValidBankResponseCode($this->sf_atos_cart->getBankResponseCode())){
+		if($this->sf_atos_cart instanceof sfAtosCart){
 			$this->forward($this->getModuleName(),'confirm');
 		}
 	}
