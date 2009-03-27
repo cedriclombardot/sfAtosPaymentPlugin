@@ -48,7 +48,7 @@ EOF;
 ');
  	fputs($fp,'D_LOGO!'.sfAtosPaymentConfig::get('d_logo','/sfAtosPaymentPlugin/logos/').'!
 ');
- 	fputs($fp,'F_CERTIFICATE!'.sfAtosPaymentConfig::get('f_certificate',$dir.'/cerif').'!
+ 	fputs($fp,'F_CERTIFICATE!'.sfAtosPaymentConfig::get('f_certificate',$dir.'/certif').'!
 ');
  	fputs($fp,'F_PARAM!'.sfAtosPaymentConfig::get('f_param',$dir.'/parcom').'!
 ');

@@ -17,7 +17,7 @@ class sfAtosPaymentDemoActions extends sfActions {
 		$payment_transaction=new sfAtosPayment();
 		$payment_transaction->setAmount(100);
 		$payment_transaction->setCustomerId(uniqid());
-		$payment_transaction->doRequest();
+		$this->bank=$payment_transaction->doRequest();
 	}
 	
 	public function executeConfirm(sfWebRequest $request){
