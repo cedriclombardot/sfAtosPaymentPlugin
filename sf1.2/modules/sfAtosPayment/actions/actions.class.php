@@ -17,6 +17,7 @@ class sfAtosPaymentActions extends sfActions {
 	 * Auto response
 	 */
 	public function executeResponse(sfWebRequest $request){
+		
 		$payment_transaction=new sfAtosPayment();
 		$payment_transaction->doResponse();
 		

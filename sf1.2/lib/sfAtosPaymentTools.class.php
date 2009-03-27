@@ -109,8 +109,8 @@ class sfAtosPaymentTools extends sfAtosPaymentBase{
 	 * @return string Desciption
 	 */
 	public static function getResponseCodeName($code){
-		if(in_array($code,self::$_response_code))
-			return self::__(array_search($code,sfAtosPaymentBase::$_response_code));
+		if(array_key_exists($code,self::$_response_code))
+			return sfAtosPaymentBase::$_response_code[$code];
 		throw new Exception('Impossible de trouver le code >> '.$code.' << ');
 	}
 	
@@ -124,8 +124,8 @@ class sfAtosPaymentTools extends sfAtosPaymentBase{
 	 * @return string Desciption
 	 */
 	public static function getBankResponseCodeName($code){
-		if(in_array($code,self::$_bank_response_code))
-			return self::__(array_search($code,sfAtosPaymentBase::$_bank_response_code));
+		if(array_key_exists($code,self::$_bank_response_code))
+			return sfAtosPaymentBase::$_bank_response_code[$code];
 		throw new Exception('Impossible de trouver le code >> '.$code.' << ');
 	}
 	
@@ -139,6 +139,7 @@ class sfAtosPaymentTools extends sfAtosPaymentBase{
 	 * @return boolean true si le paiement et correcte
 	 */
 	public static function isValidBankResponseCode($bank_response_code){
+	
 		return ($bank_response_code=='00');
 	}
 	

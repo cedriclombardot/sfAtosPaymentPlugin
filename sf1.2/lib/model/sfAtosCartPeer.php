@@ -12,7 +12,7 @@ class sfAtosCartPeer extends BasesfAtosCartPeer
 	 * @return sfAtosCart
 	 */
 	public static function retrieveByBankResponse($array, PropelPDO $con=null){
-		return self::retrieveByOrderId($tableau[27],$con);
+		return self::retrieveByOrderId($array[27],$con);
 	}
 	
 	/**
