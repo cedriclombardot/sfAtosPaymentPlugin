@@ -234,9 +234,9 @@ class sfAtosPayment extends sfAtosPaymentBase{
 	 	$sf_atos_cart->setTransactionId($tableau[6]);
 		$sf_atos_cart->setTransmissionDate($tableau[8]);
 		
-		$payement_timestamp=mktime(substr($this->payment_time,0,2),substr($this->payment_time,2,2),
-		substr($this->payment_time,4,2),substr($this->payment_date,4,2),substr($this->payment_date,6,2),
-		substr($this->payment_date,0,4));
+		$payement_timestamp=mktime(substr($tableau[9],0,2),substr($tableau[9],2,2),
+		substr($tableau[9],4,2),substr($tableau[10],4,2),substr($tableau[10],6,2),
+		substr($this->$tableau[10],0,4));
 		$sf_atos_cart->setPaymentTime($payement_timestamp);
 
 		$sf_atos_cart->setResponseCode($tableau[11]);
