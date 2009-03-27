@@ -69,6 +69,21 @@ class sfAtosPaymentTools extends sfAtosPaymentBase{
 	}
 	
 	/**
+	 * Retourne le texte du complementay_code code en fonction du complementay_code
+	 *
+	 * @access public
+	 * @static 
+	 * @param integer $code complementay_code
+	 * 
+	 * @return string Desciption
+	 */
+	public static function getComplementaryCodeName($code){
+		if(array_key_exists($code,self::$_complementary_codes))
+			return self::$_complementary_codes[$code];
+		throw new Exception('Impossible de trouver le code >> '.$code.' << ');
+	}
+	
+	/**
 	 * Retourne le texte du cvv flag code en fonction du cvv_flag_code
 	 *
 	 * @access public
@@ -78,8 +93,8 @@ class sfAtosPaymentTools extends sfAtosPaymentBase{
 	 * @return string Desciption
 	 */
 	public static function getCvvFlagCodeName($code){
-		if(in_array($code,self::$_cvv_flag_code))
-			return self::__(array_search($code,sfAtosPaymentBase::$_cvv_flag_code));
+		if(array_key_exists($code,self::$_cvv_flag_code))
+			return self::$_cvv_flag_code[$code];
 		throw new Exception('Impossible de trouver le code >> '.$code.' << ');
 	}
 	
@@ -94,8 +109,8 @@ class sfAtosPaymentTools extends sfAtosPaymentBase{
 	 * @return string Desciption
 	 */
 	public static function getCvvVerificationCodeName($code){
-		if(in_array($code,self::$_cvv_verification_code))
-			return self::__(array_search($code,sfAtosPaymentBase::$_cvv_verification_code));
+		if(array_key_exists($code,self::$_cvv_verification_code))
+			return self::$_cvv_verification_code[$code];
 		throw new Exception('Impossible de trouver le code >> '.$code.' << ');
 	}
 	

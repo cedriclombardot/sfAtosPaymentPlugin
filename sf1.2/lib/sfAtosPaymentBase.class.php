@@ -115,7 +115,16 @@ abstract class sfAtosPaymentBase{
  	   '90' =>    'Service temporairement indisponible'
  	  );
  	
- 	 
+ 	 /** @staticvar  Liste des codes compémentaires */
+ 	  public static $_complementary_codes =array(
+ 	  	''=> 'Pas de contrôle effectué',
+ 	  	'00'=>'Tous les contrôles auxquels vous avez adhérés se sont effectués avec succès',
+ 	  	'02'=>'La carte utilisée a dépassé l’encours autorisé',
+ 	  	'03'=>'La carte utilisée appartient à la « liste grise » du commerçant',
+ 	  	'05'=>'le BIN de la carte utilisée appartient à une plage non référencée dans la table des BIN de la plate-forme MERCANET',
+ 	  	'06'=>'le numéro de carte n\'est pas dans une plage de même nationalité que celle du commerçant',
+ 	  	'99'=>'le serveur MERCANET a un rencontré un problème lors du traitement d\'un des contrôles locaux complémentaires',
+ 	  );
 	 
 	 
 }

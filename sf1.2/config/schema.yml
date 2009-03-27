@@ -6,7 +6,7 @@ propel:
     # Prix en centimes
     amount: { type: integer, required: true, index: index } 
     # La valeur de ce champ est fournie par Mercanet au commerçant, lors de l’inscription de sa boutique
-    merchant_id:  { type: integer, size: 15, index: index, required: true }
+    merchant_id:  { type: varchar, size: 15, index: index, required: true }
     # Langue du commercant
     merchant_language: { type: varchar, size: 2, index: index }
     # Pays du commercant
@@ -39,7 +39,7 @@ propel:
     # Champ renvoyé dans la réponse et contenant le code de la réponse du serveur d’autorisation bancaire.
     bank_response_code: { type: varchar, size: 2, index: index }
     # Champ renvoyé dans la réponse et contenant le code réponse complémentaire du serveur MERCANET. 
-    complementary_code:  { type: integer, size: 2, index: index }
+    complementary_code:  { type: varchar, size: 2, index: index }
     # Champ renvoyé dans la réponse et contenant une information
     # sur le  code réponse complémentaire du serveur MERCANET
     complementary_info: { type: varchar, size: 255 }
