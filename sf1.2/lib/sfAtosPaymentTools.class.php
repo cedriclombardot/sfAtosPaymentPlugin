@@ -181,7 +181,7 @@ class sfAtosPaymentTools extends sfAtosPaymentBase{
 	 * Génère un order_id
 	 */
 	public static function generateOrderId(){
-		return uniqid(rand(), true);
+		return uniqid(rand());
 	}
 }
 ?>

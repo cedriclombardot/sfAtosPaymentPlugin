@@ -4,7 +4,7 @@ all:
     #currency_code: EUR # PAR defaut EUR coe de paiement par défaut si non surchargé dans le module
     #merchant_country: fr # Par defaut fr sauf surcharge dans le code
     binpath: "D:/Documents/sf2/plugins/sfAtosPaymentPlugin/cgi-bin" # Chemin d'accès aux binaires
-    merchant_id: "049981472100019" #mettre des quotes pour le 0
+    merchant_id: "038862749811111" #mettre des quotes pour le 0
     #pathfile_path: "" # Chemin du pathfile par defaut le dossier atos du plugin
     #d_logo: "" # CHemin des logos par défaut le dossier logos de web du plugin
     #f_certificate: "" #par defaut le meme dossier que pathfile /certif

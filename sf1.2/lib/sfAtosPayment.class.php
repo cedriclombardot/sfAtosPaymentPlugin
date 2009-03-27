@@ -149,7 +149,7 @@ class sfAtosPayment extends sfAtosPaymentBase{
 		 if ($tableau[1] == '' && $tableau[2] == '') 
 		 	throw new Exception('Impossible de trouver l\'executable: ' . $this->_bin_path.DIRECTORY_SEPARATOR.$this->_request_bin_name);
 	     elseif ($tableau[1] != 0) 
-		 	throw new Exception('Erreur API '. $tableau[1]);
+		 	throw new Exception('Erreur API '. $tableau[2]);
 		
 		 return $tableau[3];
 	 }
@@ -204,10 +204,12 @@ class sfAtosPayment extends sfAtosPaymentBase{
 	 public function getResponse(){
 	 	$result=exec($this->_bin_path.DIRECTORY_SEPARATOR.$this->_response_bin_name.' '.$this->buildResponseRequest());
 	 	$tableau = explode ("!", $result);
+	 	
+	 	
 	 	if ($tableau[1] == '' && $tableau[2] == '') 
 		 	throw new Exception('Impossible de trouver l\'executable: ' . $this->_bin_path.DIRECTORY_SEPARATOR.$this->_request_bin_name);
 	    elseif ($tableau[1] != 0) 
-		 	throw new Exception('Erreur API '. $tableau[1]);
+		 	throw new Exception('Erreur API '. $tableau[2]);
 		 
 		return $tableau;
 	
