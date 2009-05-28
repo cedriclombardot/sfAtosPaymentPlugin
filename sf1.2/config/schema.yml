@@ -27,7 +27,7 @@ propel:
     payment_certificate: { type: varchar, size: 12 }
     # Contient l’identifiant d’autorisation retourné par la banque si la demande d’autorisation est acceptée.
     # Ce champ est uniquement présent dans la réponse
-    authorisation_id: { type: varchar, size: 10, index: unique } 
+    authorisation_id: { type: varchar, size: 10 } 
     # Code de la monnaie
     currency_code:  { type: integer, size: 3, index: index, required: true }
     # Ce champ n’est renseigné par le serveur Mercanet que si une demande d’autorisation a été réalisée

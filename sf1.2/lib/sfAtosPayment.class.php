@@ -196,9 +196,11 @@ class sfAtosPayment extends sfAtosPaymentBase{
 	
 	/**
 	 * Execute La réponse automatique
+	 * 
+	 * @return sfAtosCart
 	 */
 	 public function doResponse(){
-		 $this->saveResponse($this->getResponse());
+		 return $this->saveResponse($this->getResponse());
 	 }
 	 
 	 public function getResponse(){
@@ -215,6 +217,12 @@ class sfAtosPayment extends sfAtosPaymentBase{
 	
 	 }
 	 
+	 /**
+	  * save the response inot the database
+	  *
+	  * @param array $tableau
+	  * @return sfAtosCart
+	  */
 	 private function saveResponse($tableau){
 	 	$sf_atos_cart=new sfAtosCart();
 	 	
@@ -275,6 +283,7 @@ class sfAtosPayment extends sfAtosPaymentBase{
 		
 		//Save
 		$sf_atos_cart->save();
+		return $sf_atos_cart;
 		
 	 }
 	 private function buildResponseRequest(){
