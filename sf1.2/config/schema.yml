@@ -12,7 +12,7 @@ propel:
     # Pays du commercant
     merchant_country: { type: varchar, size: 2, index: index }
     # Contient l’identifiant de la transaction de paiement. 
-    transaction_id: { type: integer, size: 6, index: unique, required: true }
+    transaction_id: { type: integer, size: 6, required: true }
     # Contient le moyen de paiement choisi par l’internaute pour la transaction
     payment_means: { type: varchar, size: 128, index: index }
     # Champ interne renseigné par l’API, renvoyé dans la réponse et contenant la date
