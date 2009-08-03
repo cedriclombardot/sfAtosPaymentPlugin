@@ -5,19 +5,19 @@
  * @package sfAtosPaymentPlugin
  * @subpackage sfAtosPaymentBase
  * @version sf1.2 - 0.1
- * 
- * Cette classe gère les variables des langues pour les paiements en ligne pour la 
+ *
+ * Cette classe gère les variables des langues pour les paiements en ligne pour la
  * plupat des banques francaises
- * 
+ *
  * @see Inspiré de sfPaymentSIPSPlugin/modules/sfPaymentSIPS/lib/sfPaymentSIPS.class.php
- * 
+ *
  */
 
 abstract class sfAtosPaymentBase{
-	
+
 	/** @staticvar Liste les langues utilisables par le modules ATOS */
 	public static $_languages = array('fr', 'be', 'de', 'it', 'es', 'en');
-	
+
 	/** @staticvar Liste les monnaies afin de rendre plus lisible la config */
 	public static $_currencies = array(
 	    'EUR' => 978,
@@ -42,28 +42,29 @@ abstract class sfAtosPaymentBase{
 	    'XPF' => 953,
  	    'WAF' => 952
  	  );
- 	
+
  	  /** @staticvar Liste des retours sur les CVV flag (chiffres derrières la carte */
  	public static $_cvv_flag_code = array(
  	    '0' => 'Le numéro de contrôle n’est pas remonté par le commerçant',
  	    '1' => 'Le numéro de contrôle est présent',
- 	    '2' => 'Le numéro de contrôle est présent sur la carte du porteur mais illisible 
+ 	    '2' => 'Le numéro de contrôle est présent sur la carte du porteur mais illisible
 (uniquement pour les cartes CB, VISA et MASTERCARD)',
  	    '9' => 'Le porteur a informé le commerçant que le numéro de contrôle
  n’était pas imprimé sur sa carte (uniquement pour les cartes CB, VISA, MASTERCARD et FINAREF)'
  	  );
- 	  
- 	
- 	/** @staticvar Code de retour de verification du CVV flag */ 
+
+
+ 	/** @staticvar Code de retour de verification du CVV flag */
  	public static $_cvv_verification_code = array(
  	    '4E' => 'Numéro de contrôle incorrect',
  	    '4D' => 'Numéro de contrôle correct',
  	    '50' => 'Numéro de contrôle non traité',
  	    '53' => 'Le numéro de contrôle est absent de la demande d’autorisation',
  	    '55' => 'La banque de l’internaute n’est pas certifiée, le contrôle n’a pu être effectué.',
- 	    'NO' => 'Pas de cryptogramme sur la carte.'
+ 	    'NO' => 'Pas de cryptogramme sur la carte.',
+ 		'??' => '??'
     );
-    
+
     /**  @staticvar code de réponse */
     public static $_response_code = array(
  	    '00' => 'Transaction approuvée ou traitée avec succès',
@@ -100,7 +101,7 @@ abstract class sfAtosPaymentBase{
  	    '98' => 'Serveur indisponible routage réseau demandé à nouveau',
  	    '99' => 'Incident domaine initiateur',
  	  );
- 	  
+
  	  /**  @staticvar code de reponse de SPIS */
  	  public static $_bank_response_code = array(
  	   '00' =>    'Autorisation acceptée',
@@ -112,9 +113,11 @@ abstract class sfAtosPaymentBase{
 	   '30' =>    'Erreur de format.',
 	   '34' =>    'Suspicion de fraude',
  	   '75' =>    'Nombre de tentatives de saisie du numéro de carte dépassé.',
+ 	   '59' =>	  'Code inconnu - 59',
+ 	   '' =>	  'Code inconnu',
  	   '90' =>    'Service temporairement indisponible'
  	  );
- 	
+
  	 /** @staticvar  Liste des codes compémentaires */
  	  public static $_complementary_codes =array(
  	  	''=> 'Pas de contrôle effectué',
@@ -125,7 +128,7 @@ abstract class sfAtosPaymentBase{
  	  	'06'=>'le numéro de carte n\'est pas dans une plage de même nationalité que celle du commerçant',
  	  	'99'=>'le serveur MERCANET a un rencontré un problème lors du traitement d\'un des contrôles locaux complémentaires',
  	  );
-	 
-	 
+
+
 }
 ?>

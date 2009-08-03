@@ -12,14 +12,14 @@ known as SIPS, ATOS ... This is the most used systems for French Banks.</descrip
   <email>cedric.lombardot@spyrit.net</email>
   <active>yes</active>
  </lead>
- <date>2009-03-27</date>
+ <date>2009-06-17</date>
  <version>
-   <release>0.5.0</release>
-   <api>0.5.0</api>
+   <release>1.0.0</release>
+   <api>1.0.0</api>
  </version>
  <stability>
-  <release>beta</release>
-  <api>beta</api>
+  <release>stable</release>
+  <api>stable</api>
  </stability>
 <license uri="http://www.symfony-project.com/license">MIT</license>
  <notes>-</notes>
@@ -47,5 +47,5 @@ known as SIPS, ATOS ... This is the most used systems for French Banks.</descrip
  </phprelease>
 
  <changelog>
- <release><version><release>0.5.0</release><api>0.5.0</api></version><stability><release>beta</release><api>beta</api></stability><license uri="http://www.symfony-project.com/license">MIT</license><date>2009-03-27</date><notes>Initial packagedRealease</notes></release></changelog>
+ <release><version><release>0.5.0</release><api>0.5.0</api></version><stability><release>beta</release><api>beta</api></stability><license uri="http://www.symfony-project.com/license">MIT</license><date>2009-03-27</date><notes>Initial packagedRealease</notes></release><release><version><release>1.0.0</release><api>1.0.0</api></version><stability><release>stable</release><api>stable</api></stability><license uri="http://www.symfony-project.com/license">MIT</license><date>2009-06-17</date><notes>Model schema.yml</notes></release></changelog>
 </package>
