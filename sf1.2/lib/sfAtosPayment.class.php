@@ -39,7 +39,7 @@ class sfAtosPayment extends sfAtosPaymentBase{
 	 /** Chemin de pathfile */
 	 private $_pathfile;
 	 
-	 
+	 private $_transaction_id;
 	 /** Numéro de la commande */
 	 private $_order_id;
 	 
@@ -176,6 +176,7 @@ class sfAtosPayment extends sfAtosPaymentBase{
 		  * @todo paiement différé
 		  * 
 		  */
+		 $parm .=" transaction_id=".$this->getTransactionId();
 		 	
 		 //Client
 		 $parm .= " customer_id=".$this->getCustomerId();
@@ -319,6 +320,13 @@ class sfAtosPayment extends sfAtosPaymentBase{
 	 	return $this->_cancel_return;
 	 }
 	 
+	 public function getTransactionId(){
+	 	return $this->_transaction_id;
+	 }
+	public function setTransactionId($transaction_id){
+	 	$this->_transaction_id=$transaction_id;
+	 	return $this;
+	 }
 	/**
 	 * Change la valeur de _normal_return
 	 * 
