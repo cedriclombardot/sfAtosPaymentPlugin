@@ -1,0 +1,24 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      sfAtosCart
+    theme:            default
+    
+    list:
+      title: Liste des payments
+      display: [ =order_id, payment_time, bank_response_code, amount, bank_response_code, card_number, customer_id, customer_email ]
+      filters: [ order_id, bank_response_code, payment_time, card_number ]
+    
+    edit:
+      title: Affichage de la commande %%order_id%%
+      actions:
+        _list: ~
+      display:
+        "Le commercant": [ merchant_id, merchant_country, merchant_language ]
+        "L\'achat": [ order_id, _amount, _currency_code, return_context, caddie]
+        "La transaction": [ transaction_id, transmission_date, payment_time, _response_code, payment_certificate, authorisation_id ]
+        "La carte": [ payment_means, card_number, _cvv_flag, _cvv_response_code ]
+        "Paiment différé": [ capture_day, capture_mode ]
+        "Réponse de la banque": [ _bank_response_code, _complementary_code, complementary_info ]
+        "Le client": [ customer_id, language, customer_email, customer_ip_address ]     
+         
