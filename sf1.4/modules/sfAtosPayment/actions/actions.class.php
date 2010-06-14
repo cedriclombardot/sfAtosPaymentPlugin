@@ -17,8 +17,11 @@ class sfAtosPaymentActions extends sfActions {
 	 * Auto response
 	 */
 	public function executeResponse(sfWebRequest $request){
-		
-		$payment_transaction=new sfAtosPayment();
+		if(array_search('sfDoctrinePlugin',$this->getContext()->getConfiguration()->getPlugins()))
+			$payment_transaction=new sfAtosDoctrinePayment();
+		else
+			$payment_transaction=new sfAtosPropelPayment();
+			
 		$payment_transaction->doResponse();
 		
 		$this->setLayout(false);
