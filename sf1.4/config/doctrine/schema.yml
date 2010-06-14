@@ -1,6 +1,5 @@
 sf_atos_cart:
   columns:
-    id: ~
     # Prix en centimes
     amount: { type: integer, notnull: true } 
     # La valeur de ce champ est fournie par Mercanet au commerçant, lors de l’inscription de sa boutique
@@ -45,7 +44,7 @@ sf_atos_cart:
     return_context: { type: varchar(256) }
     # Champ libre. Toute information transmise dans ce champ par le commerçant
     # lors de la requête de paiement est renvoyée dans la réponse sans modification.
-    caddie: { type: longvarchar }
+    caddie: { type: varchar(5000) }
     # Langue de l'interface donc du client    
     language: { type: varchar(2) }
     # Ce champ est utilisé pour les paiements par abonnement.

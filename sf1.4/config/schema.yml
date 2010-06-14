@@ -1,6 +1,7 @@
 propel:
   sf_atos_cart:
     _attributes: { phpName: sfAtosCart }
+    id: ~
     # Prix en centimes
     amount: { type: integer, required: true, index: index } 
     # La valeur de ce champ est fournie par Mercanet au commerçant, lors de l’inscription de sa boutique
