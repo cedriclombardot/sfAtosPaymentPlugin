@@ -220,13 +220,13 @@ class sfAtosPayment extends sfAtosPaymentBase{
 	 
 	 
 	 /**
-	  * save the response inot the database
+	  * save the response into the database
 	  *
 	  * @param array $tableau
-	  * @return sfAtosCart
+	  * @return sf_atos_cart|sfAtosCart depends of ORM doctrine|propel
 	  */
 	 private function saveResponse($tableau){
-	 	$sf_atos_cart=new SfAtosCart();
+	 	$sf_atos_cart=$this->getNewCart();
 	 	
 	 	//Le commercant
 	 	$sf_atos_cart->setMerchantId($tableau[3]);

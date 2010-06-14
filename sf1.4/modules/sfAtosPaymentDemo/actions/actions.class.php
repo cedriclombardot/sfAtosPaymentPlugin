@@ -38,12 +38,16 @@ class sfAtosPaymentDemoActions extends sfActions {
 		$payment_transaction=new sfAtosPayment();
 		if(array_search('sfDoctrinePlugin',$this->getContext()->getConfiguration()->getPlugins())){
 			$this->sf_atos_cart=sf_atos_cartTable::retrieveByBankResponse($payment_transaction->getResponse());
+			if($this->sf_atos_cart instanceof sf_atos_cart){
+				$this->forward($this->getModuleName(),'confirm');
+			}
 		}else{
 			$this->sf_atos_cart=SfAtosCartPeer::retrieveByBankResponse($payment_transaction->getResponse());
+			if($this->sf_atos_cart instanceof SfAtosCart){
+				$this->forward($this->getModuleName(),'confirm');
+			}
 		}
-		if($this->sf_atos_cart instanceof sfAtosCart){
-			$this->forward($this->getModuleName(),'confirm');
-		}
+		
 	}
 }
 ?>

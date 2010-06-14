@@ -4,7 +4,7 @@
  * @see http://symfony.spyrit.net
  * @package sfAtosPaymentPlugin
  * @subpackage sfAtosPayment
- * @version sf1.2 - 0.1
+ * @version sf1.4 - 0.1
  * 
  * Module de gestion des réponses automatiques
  * 

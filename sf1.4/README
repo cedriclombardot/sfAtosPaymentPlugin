@@ -1,18 +1,21 @@
 # sfAtosPaymentPlugin
 
+This plugin is now compatible doctrine and propel but if you use the latest 
+sf1.2 branches upgrade your model rename cols data to datas.
+
 This plugin will help you to save the CB payments with the MERCANET system 
 known as SIPS, ATOS ... This is the most used systems for French Banks.
 
 ## Installation
 
     [console]
-    symfony plugin-install sfAtosPaymentPlugin -v=...
+    symfony plugin:install sfAtosPaymentPlugin 
     
 Activate the modules :
 
-* sfAtosPayment for the front
-* sfAtosPaymentAdmin for the admin app
-* sfAtosPaymentDemo for the front if you want to have a demo
+* sfAtosPayment for the front for propel and doctrine
+* sfAtosPaymentAdmin for the admin app for propel (to rebuild with new admin generator)
+* sfAtosPaymentDemo for the front if you want to have a demo for propel and doctrine
 
 
 Rebuild your database to load the table
@@ -25,10 +28,10 @@ Configure the app.yml
         debug: "yes" # par defaut no
         #currency_code: EUR # PAR defaut EUR coe de paiement par défaut si non surchargé dans le module
         #merchant_country: fr # Par defaut fr sauf surcharge dans le code
-        binpath: "D:/Documents/sf2/plugins/sfAtosPaymentPlugin/cgi-bin" # Chemin d'accès aux binaires
+        binpath: "/home/project/sfAtosPaymentPlugin/cgi-bin" # Chemin d'accès aux binaires
         merchant_id: "038862749811111" #mettre des quotes pour le 0
         #pathfile_path: "" # Chemin du pathfile par defaut le dossier atos du plugin
-        #d_logo: "" # CHemin des logos par défaut le dossier logos de web du plugin
+        #d_logo: "" # Chemin des logos par défaut le dossier logos de web du plugin
         #f_certificate: "" #par defaut le meme dossier que pathfile /certif
         #f_param: "" #par defaut le meme dossier que pathfile /parcom
         f_default_name: "parmcom.cyberplus" # dans le dossier de parcom
@@ -43,7 +46,3 @@ After clear your cache and rebuild the pathfile with
     symfony atos:pathfile YOUR_APP
 
 Set yours certif and parcom files in the atos folder
-
-
-
-
