@@ -19,7 +19,7 @@ class sfAtosPaymentActions extends sfActions {
 	public function executeResponse(sfWebRequest $request){
 		$properties = parse_ini_file(sfConfig::get('sf_config_dir').DIRECTORY_SEPARATOR.'properties.ini', true);
 
-		if($properties['orm']=='Doctrine')
+		if($properties['symfony']['orm']=='Doctrine')
 			$payment_transaction=new sfAtosDoctrinePayment();
 		else
 			$payment_transaction=new sfAtosPropelPayment();

@@ -14,8 +14,12 @@
 class sfAtosPaymentDemoActions extends sfActions {
 	
 	public function executeIndex(sfWebRequest $request){
-		
-		$payment_transaction=new sfAtosPayment();
+		$properties = parse_ini_file(sfConfig::get('sf_config_dir').DIRECTORY_SEPARATOR.'properties.ini', true);
+		if($properties['symfony']['orm']=='Doctrine'){
+			$payment_transaction=new sfAtosDoctrinePayment();
+		}else{
+			$payment_transaction=new sfAtosPropelPayment();
+		}
 		$payment_transaction->setAmount(100);
 		$payment_transaction->setCustomerId(uniqid());
 		$this->bank=$payment_transaction->doRequest();
@@ -24,7 +28,7 @@ class sfAtosPaymentDemoActions extends sfActions {
 	public function executeConfirm(sfWebRequest $request){
 		$properties = parse_ini_file(sfConfig::get('sf_config_dir').DIRECTORY_SEPARATOR.'properties.ini', true);
 
-		if($properties['orm']=='Doctrine'){
+		if($properties['symfony']['orm']=='Doctrine'){
 			$this->sf_atos_cart=sf_atos_cartTable::retrieveByBankResponse($payment_transaction->getResponse());
 		}else{
 			$this->sf_atos_cart=SfAtosCartPeer::retrieveByBankResponse($payment_transaction->getResponse());
@@ -36,16 +40,18 @@ class sfAtosPaymentDemoActions extends sfActions {
 	}
 	
 	public function executeCancel(sfWebRequest $request){
-		$payment_transaction=new sfAtosPayment();
+		
 		
 		$properties = parse_ini_file(sfConfig::get('sf_config_dir').DIRECTORY_SEPARATOR.'properties.ini', true);
-
-		if($properties['orm']=='Doctrine'){
+		
+		if($properties['symfony']['orm']=='Doctrine'){
+			$payment_transaction=new sfAtosDoctinePayment();
 			$this->sf_atos_cart=sf_atos_cartTable::retrieveByBankResponse($payment_transaction->getResponse());
 			if($this->sf_atos_cart instanceof sf_atos_cart){
 				$this->forward($this->getModuleName(),'confirm');
 			}
 		}else{
+			$payment_transaction=new sfAtosPropelPayment();
 			$this->sf_atos_cart=SfAtosCartPeer::retrieveByBankResponse($payment_transaction->getResponse());
 			if($this->sf_atos_cart instanceof SfAtosCart){
 				$this->forward($this->getModuleName(),'confirm');
