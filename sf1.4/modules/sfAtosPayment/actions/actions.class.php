@@ -17,7 +17,9 @@ class sfAtosPaymentActions extends sfActions {
 	 * Auto response
 	 */
 	public function executeResponse(sfWebRequest $request){
-		if(array_search('sfDoctrinePlugin',$this->getContext()->getConfiguration()->getPlugins()))
+		$properties = parse_ini_file(sfConfig::get('sf_config_dir').DIRECTORY_SEPARATOR.'properties.ini', true);
+
+		if($properties['orm']=='Doctrine')
 			$payment_transaction=new sfAtosDoctrinePayment();
 		else
 			$payment_transaction=new sfAtosPropelPayment();
