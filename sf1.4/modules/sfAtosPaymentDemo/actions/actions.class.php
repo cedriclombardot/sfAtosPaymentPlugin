@@ -14,8 +14,6 @@
 class sfAtosPaymentDemoActions extends sfActions {
 	
 	public function executeIndex(sfWebRequest $request){
-		$payment_transaction=new sfAtosDoctrinePayment();
-		die();
 		$properties = parse_ini_file(sfConfig::get('sf_config_dir').DIRECTORY_SEPARATOR.'properties.ini', true);
 		if($properties['symfony']['orm']=='Doctrine'){
 			$payment_transaction=new sfAtosDoctrinePayment();
