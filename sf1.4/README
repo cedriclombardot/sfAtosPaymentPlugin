@@ -14,7 +14,7 @@ known as SIPS, ATOS ... This is the most used systems for French Banks.
 Activate the modules :
 
 * sfAtosPayment for the front for propel and doctrine
-* sfAtosPaymentAdmin for the admin app for propel (to rebuild with new admin generator)
+* sfAtosPaymentAdmin for the admin app for doctrine see after for propel
 * sfAtosPaymentDemo for the front if you want to have a demo for propel and doctrine
 
 
