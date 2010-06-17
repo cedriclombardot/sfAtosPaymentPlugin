@@ -217,9 +217,10 @@ abstract class sfAtosPayment extends sfAtosPaymentBase{
 	 	
 	 	if ($tableau[1] == '' && $tableau[2] == '') 
 		 	throw new Exception('Impossible de trouver l\'executable: ' . $this->_bin_path.DIRECTORY_SEPARATOR.$this->_request_bin_name);
-	    elseif ($tableau[1] != 0) 
+	    elseif ($tableau[1] != 0) {
 		 	throw new Exception('Erreur API '. $tableau[2]);
-		 
+	    }
+	    
 		return $tableau;
 	
 	 }
@@ -233,7 +234,6 @@ abstract class sfAtosPayment extends sfAtosPaymentBase{
 	  */
 	 private function saveResponse($tableau){
 	 	$sf_atos_cart=$this->getNewCart();
-	 	
 	 	//Le commercant
 	 	$sf_atos_cart->setMerchantId($tableau[3]);
 	 	$sf_atos_cart->setMerchantCountry($tableau[4]);
@@ -249,13 +249,15 @@ abstract class sfAtosPayment extends sfAtosPaymentBase{
 	 	//Transaction
 	 	$sf_atos_cart->setTransactionId($tableau[6]);
 	 	
+	 	if(!is_string($tableau[8])){
 	 	$transmission_date=mktime(substr($tableau[8],8,2),substr($tableau[8],10,2),substr($tableau[8],12,2),substr($tableau[8],4,2),substr($tableau[8],6,2),
-		substr($this->$tableau[8],0,4));
+		substr($tableau[8],0,4));
+	 	}
 		$sf_atos_cart->setTransmissionDate($tableau[8]);
 		
 		$payement_timestamp=mktime(substr($tableau[9],0,2),substr($tableau[9],2,2),
 		substr($tableau[9],4,2),substr($tableau[10],4,2),substr($tableau[10],6,2),
-		substr($this->$tableau[10],0,4));
+		substr($tableau[10],0,4));
 		$sf_atos_cart->setPaymentTime($payement_timestamp);
 
 		$sf_atos_cart->setResponseCode($tableau[11]);

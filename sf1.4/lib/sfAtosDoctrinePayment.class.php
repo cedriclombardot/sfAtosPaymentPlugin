@@ -7,7 +7,8 @@ class sfAtosDoctrinePayment extends sfAtosPayment{
 	  * @return sf_atos_cart
 	  */
 	function getNewCart(){
-	 	return new sf_atos_cart();
+		Doctrine_Core::loadModel('sf_atos_cart');
+	 	return 'sf_atos_cart';
 	}
 }
 ?>
