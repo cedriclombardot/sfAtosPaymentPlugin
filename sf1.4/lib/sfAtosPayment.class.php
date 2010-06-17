@@ -233,7 +233,8 @@ abstract class sfAtosPayment extends sfAtosPaymentBase{
 	  * @return sf_atos_cart|sfAtosCart depends of ORM doctrine|propel
 	  */
 	 private function saveResponse($tableau){
-	 	$sf_atos_cart=new $this->getNewCart();
+	 	$object=$this->getNewCart();
+	 	$sf_atos_cart=new $object();
 	 	//Le commercant
 	 	$sf_atos_cart->setMerchantId($tableau[3]);
 	 	$sf_atos_cart->setMerchantCountry($tableau[4]);
@@ -292,11 +293,7 @@ abstract class sfAtosPayment extends sfAtosPaymentBase{
 		$sf_atos_cart->setDatas($tableau[32]);
 		
 		//Save
-		try{
 		$sf_atos_cart->save();
-		}catch(Exception $e){
-		mail('lombardot@spyrit.net','EXE',$e->getMessage());
-		}
 		return $sf_atos_cart;
 		
 	 }
