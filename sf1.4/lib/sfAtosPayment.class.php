@@ -11,7 +11,7 @@
  * 
  */
 
-class sfAtosPayment extends sfAtosPaymentBase{
+abstract class sfAtosPayment extends sfAtosPaymentBase{
  	
 	/**
  	  * Variables liés à l'étape une - Requette
@@ -78,6 +78,11 @@ class sfAtosPayment extends sfAtosPaymentBase{
 	 
 	 /** Mode de paiment différé */
 	 private $_capture_mode;
+	 
+	 /** new Cart 
+	  * @return sf_atos_cart 
+	  */
+	 abstract function getNewCart();
 	 
 	 /**
 	  * Ouvre une transaction
@@ -201,6 +206,7 @@ class sfAtosPayment extends sfAtosPaymentBase{
 	 * @return sfAtosCart
 	 */
 	 public function doResponse(){
+	 	
 		 return $this->saveResponse($this->getResponse());
 	 }
 	 
@@ -226,9 +232,7 @@ class sfAtosPayment extends sfAtosPaymentBase{
 	  * @return sf_atos_cart|sfAtosCart depends of ORM doctrine|propel
 	  */
 	 private function saveResponse($tableau){
-	 	mail('lombardot@spyrit.net','cl',get_class($this));
 	 	$sf_atos_cart=$this->getNewCart();
-	 	mail('lombardot@spyrit.net','cl',get_class($sf_atos_cart));
 	 	
 	 	//Le commercant
 	 	$sf_atos_cart->setMerchantId($tableau[3]);

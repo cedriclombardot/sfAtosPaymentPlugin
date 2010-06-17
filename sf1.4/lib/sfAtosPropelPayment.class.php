@@ -6,7 +6,7 @@ class sfAtosPropelPayment extends sfAtosPayment{
 	  *
 	  * @return SfAtosCart
 	  */
-	private function getNewCart(){
+	function getNewCart(){
 	 	return new SfAtosCart();
 	}
 }

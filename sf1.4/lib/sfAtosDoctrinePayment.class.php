@@ -6,7 +6,7 @@ class sfAtosDoctrinePayment extends sfAtosPayment{
 	  *
 	  * @return sf_atos_cart
 	  */
-	private function getNewCart(){
+	function getNewCart(){
 	 	return new sf_atos_cart();
 	}
 }

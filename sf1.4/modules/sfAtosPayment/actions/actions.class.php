@@ -23,6 +23,7 @@ class sfAtosPaymentActions extends sfActions {
 			$payment_transaction=new sfAtosDoctrinePayment();
 		else
 			$payment_transaction=new sfAtosPropelPayment();
+		
 			
 		$payment_transaction->doResponse();
 		
