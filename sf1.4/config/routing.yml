@@ -1,0 +1,8 @@
+sfAtosPaymentAdmin:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                sf_atos_cart
+    module:               sfAtosPaymentAdmin
+    prefix_path:          sfAtosPaymentAdmin
+    column:               id
+    with_wildcard_routes: true

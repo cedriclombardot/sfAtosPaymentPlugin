@@ -1,14 +1,15 @@
 generator:
-  class: sfDoctrineGenerator
+  class: sfPropelGenerator
   param:
-    model_class:           sf_atos_cart
+    model_class:           SfAtosCart
     theme:                 admin
     non_verbose_templates: true
     with_show:             false
-    singular:              ~
-    plural:                ~
+    singular:              SfAtosCart
+    plural:                SfAtosCarts
     route_prefix:          sfAtosPaymentAdmin
-    with_doctrine_route:   true
+    with_propel_route:     1
+    actions_base_class:    sfActions
 
     
     list:

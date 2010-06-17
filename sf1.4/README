@@ -25,7 +25,7 @@ Configure the app.yml
     [yml]
     all:
       sfAtosPaymentPlugin:
-        debug: "yes" # par defaut no
+        debug: "no" # par defaut no
         #currency_code: EUR # PAR defaut EUR coe de paiement par défaut si non surchargé dans le module
         #merchant_country: fr # Par defaut fr sauf surcharge dans le code
         binpath: "/home/project/sfAtosPaymentPlugin/cgi-bin" # Chemin d'accès aux binaires
@@ -40,9 +40,32 @@ Configure the app.yml
         #confirmation_url: "" #Url pour les confirmations @homepage
         #autoresponse_url: "sfAtosPayment/response" #URL par defaut sfAtosPayment/response Attention a modifier avec précautions
 
+
+
 After clear your cache and rebuild the pathfile with
 
     [console]
     symfony atos:pathfile YOUR_APP
 
 Set yours certif and parcom files in the atos folder
+
+If you want that the save was correct in your base, you've to set debug to NO and rebuild your pathfile
+
+## You're Using Propel ?
+
+1) Rename lib/sfAtosCart.php.propel to lib/sfAtosCart.php
+2) Rename lib/sfAtosCartPeer.php.propel to lib/sfAtosCartPeer.php
+3) Remove lib/doctrine and clear cache
+
+With admin plugin :
+4) Replace config/routing.yml by config/routing.yml.propel
+5) Replace modules/sfAtosPaymentAdmin/config/generator.yml by modules/sfAtosPaymentAdmin/config/generator.yml.propel
+
+## You're Using Doctrine ?
+
+1) Enjoy !
+
+## You're Using the old release ?
+
+1) Rebuild your model the name of model is now SfAtosCart and data columns renamed to datas
+
