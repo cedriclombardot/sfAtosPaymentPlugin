@@ -233,7 +233,7 @@ abstract class sfAtosPayment extends sfAtosPaymentBase{
 	  * @return sf_atos_cart|sfAtosCart depends of ORM doctrine|propel
 	  */
 	 private function saveResponse($tableau){
-	 	$sf_atos_cart=$this->getNewCart();
+	 	$sf_atos_cart=new $this->getNewCart();
 	 	//Le commercant
 	 	$sf_atos_cart->setMerchantId($tableau[3]);
 	 	$sf_atos_cart->setMerchantCountry($tableau[4]);
