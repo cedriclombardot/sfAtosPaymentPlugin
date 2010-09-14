@@ -14,8 +14,7 @@
 class sfAtosPaymentDemoActions extends sfActions {
 	
 	public function executeIndex(sfWebRequest $request){
-		$properties = parse_ini_file(sfConfig::get('sf_config_dir').DIRECTORY_SEPARATOR.'properties.ini', true);
-		if($properties['symfony']['orm']=='Doctrine'){
+		if(sfConfig::get("sf_orm")=='doctrine'){
 			$payment_transaction=new sfAtosDoctrinePayment();
 		}else{
 			$payment_transaction=new sfAtosPropelPayment();
@@ -26,9 +25,7 @@ class sfAtosPaymentDemoActions extends sfActions {
 	}
 	
 	public function executeConfirm(sfWebRequest $request){
-		$properties = parse_ini_file(sfConfig::get('sf_config_dir').DIRECTORY_SEPARATOR.'properties.ini', true);
-
-		if($properties['symfony']['orm']=='Doctrine'){
+		if(sfConfig::get("sf_orm")=='doctrine'){
 			$this->sf_atos_cart=sf_atos_cartTable::retrieveByBankResponse($payment_transaction->getResponse());
 		}else{
 			$this->sf_atos_cart=SfAtosCartPeer::retrieveByBankResponse($payment_transaction->getResponse());
@@ -41,10 +38,7 @@ class sfAtosPaymentDemoActions extends sfActions {
 	
 	public function executeCancel(sfWebRequest $request){
 		
-		
-		$properties = parse_ini_file(sfConfig::get('sf_config_dir').DIRECTORY_SEPARATOR.'properties.ini', true);
-		
-		if($properties['symfony']['orm']=='Doctrine'){
+		if(sfConfig::get("sf_orm")=='doctrine'){
 			$payment_transaction=new sfAtosDoctinePayment();
 			$this->sf_atos_cart=sf_atos_cartTable::retrieveByBankResponse($payment_transaction->getResponse());
 			if($this->sf_atos_cart instanceof sf_atos_cart){
