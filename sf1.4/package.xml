@@ -12,10 +12,10 @@ known as SIPS, ATOS ... This is the most used systems for French Banks.</descrip
   <email>cedric.lombardot@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2010-09-14</date>
+ <date>2010-10-08</date>
  <version>
-   <release>1.4.1</release>
-   <api>1.4.1</api>
+   <release>1.4.2</release>
+   <api>1.4.2</api>
  </version>
  <stability>
   <release>stable</release>
@@ -46,5 +46,5 @@ known as SIPS, ATOS ... This is the most used systems for French Banks.</descrip
  </phprelease>
 
  <changelog>
- <release><version><release>0.5.0</release><api>0.5.0</api></version><stability><release>beta</release><api>beta</api></stability><license uri="http://www.symfony-project.com/license">MIT</license><date>2009-03-27</date><notes>Initial packagedRealease</notes></release><release><version><release>1.0.0</release><api>1.0.0</api></version><stability><release>stable</release><api>stable</api></stability><license uri="http://www.symfony-project.com/license">MIT</license><date>2009-06-17</date><notes>Model schema.yml</notes></release><release><version><release>1.4.0</release><api>1.4.0</api></version><stability><release/><api/></stability><license uri="http://www.symfony-project.com/license">MIT</license><date>2010-06-17</date><notes>New release compatible with Doctrine and Propel</notes></release><release><version><release>1.4.1</release><api>1.4.1</api></version><stability><release>stable</release><api>stable</api></stability><license uri="http://www.symfony-project.com/license">MIT</license><date>2010-09-14</date><notes>Optimize choose of orm</notes></release></changelog>
+ <release><version><release>0.5.0</release><api>0.5.0</api></version><stability><release>beta</release><api>beta</api></stability><license uri="http://www.symfony-project.com/license">MIT</license><date>2009-03-27</date><notes>Initial packagedRealease</notes></release><release><version><release>1.0.0</release><api>1.0.0</api></version><stability><release>stable</release><api>stable</api></stability><license uri="http://www.symfony-project.com/license">MIT</license><date>2009-06-17</date><notes>Model schema.yml</notes></release><release><version><release>1.4.0</release><api>1.4.0</api></version><stability><release/><api/></stability><license uri="http://www.symfony-project.com/license">MIT</license><date>2010-06-17</date><notes>New release compatible with Doctrine and Propel</notes></release><release><version><release>1.4.1</release><api>1.4.1</api></version><stability><release>stable</release><api>stable</api></stability><license uri="http://www.symfony-project.com/license">MIT</license><date>2010-09-14</date><notes>Optimize choose of orm</notes></release><release><version><release>1.4.2</release><api>1.4.2</api></version><stability><release/><api/></stability><license uri="http://www.symfony-project.com/license">MIT</license><date>2010-10-08</date><notes>Fix 2 syntax bugs</notes></release></changelog>
 </package>

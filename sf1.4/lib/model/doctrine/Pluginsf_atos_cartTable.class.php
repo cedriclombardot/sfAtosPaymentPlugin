@@ -27,7 +27,7 @@ class Pluginsf_atos_cartTable extends Doctrine_Table
 	 * @return sfAtosCart
 	 */
 	public static function retrieveByBankResponse($array){
-		return self::retrieveByOrderId($array[27],$con);
+		return self::retrieveByOrderId($array[27]);
 	}
 	
 	/**

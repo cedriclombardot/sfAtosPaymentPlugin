@@ -39,7 +39,7 @@ class sfAtosPaymentDemoActions extends sfActions {
 	public function executeCancel(sfWebRequest $request){
 		
 		if(sfConfig::get("sf_orm")=='doctrine'){
-			$payment_transaction=new sfAtosDoctinePayment();
+			$payment_transaction=new sfAtosDoctrinePayment();
 			$this->sf_atos_cart=sf_atos_cartTable::retrieveByBankResponse($payment_transaction->getResponse());
 			if($this->sf_atos_cart instanceof sf_atos_cart){
 				$this->forward($this->getModuleName(),'confirm');
