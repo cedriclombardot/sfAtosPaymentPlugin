@@ -1,8 +1,0 @@
-sfAtosPaymentAdmin:
-  class: sfPropelRouteCollection
-  options:
-    model:                SfAtosCart
-    module:               sfAtosPaymentAdmin
-    prefix_path:          sfAtosPaymentAdmin
-    column:               id
-    with_wildcard_routes: true

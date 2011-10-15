@@ -1,1 +1,0 @@
-<h1>Transaction Annulée</h1>
