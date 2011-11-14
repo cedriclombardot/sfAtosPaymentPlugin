@@ -139,7 +139,7 @@ abstract class sfAtosPayment extends sfAtosPaymentBase{
 	 public function doRequest(){
 	 	if(!sfAtosPaymentTools::isValidAmount($this->getAmount()))
 	 		throw new Exception('Amount must be an integer greater than 0');
-	 	if(!sfAtosPaymentTools::isValidMerchantId($this->getMechantId()))
+	 	if(!sfAtosPaymentTools::isValidMerchantId($this->getMerchantId()))
 	 		throw new Exception('Invalid merchant_id ');
 	 	if(!$this->getOrderId())
 	 		$this->setOrderId(sfAtosPaymentTools::generateOrderId());
@@ -161,8 +161,8 @@ abstract class sfAtosPayment extends sfAtosPaymentBase{
 	
 	private function buildRequest(){
 		// Commercant 
-		 $parm = "merchant_id=" . $this->getMechantId();
-		 $parm .= " merchant_country=" . $this->getMechantCountry();
+		 $parm = "merchant_id=" . $this->getMerchantId();
+		 $parm .= " merchant_country=" . $this->getMerchantCountry();
 		
 		 $parm .= " merchant_language=".$this->getMerchantLanguage();
 		 
@@ -484,27 +484,27 @@ abstract class sfAtosPayment extends sfAtosPaymentBase{
 	 * Change l'id du commercant
 	 * @return self
 	 */
-	public function setMechantId($merchant_id){
+	public function setMerchantId($merchant_id){
 		if(!sfAtosPaymentTools::isValidMerchantId($merchant_id))
 			throw new Exception('Invalid merchant_id '.$merchant_id);
 	 	$this->_merchant_id=$merchant_id;
 	 	return $this;
 	 }
-	 public function getMechantId(){
+	 public function getMerchantId(){
 	 	return $this->_merchant_id;
 	 }
 	/**
 	 * Change le pays du commercant
 	 * @return self
 	 */
-	public function setMechantCountry($country){
+	public function setMerchantCountry($country){
 		if(!in_array($country,self::$_languages))
 			throw new Exception('Invalid country name '.$country);
 	 	$this->_merchant_country=$country;
 	 	return $this;
 	 }
 	 
-	 public function getMechantCountry(){
+	 public function getMerchantCountry(){
 	 	return $this->_merchant_country;
 	 }
 	 
